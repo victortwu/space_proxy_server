@@ -24,6 +24,21 @@ app.get('/astros', (req, res) => {
     })
 })
 
+app.get('/location', (req, res) => {
+    axios.get(process.env.LOCATION_URL)
+    .then(response=> {
+
+        return response.data
+    })
+    .then(data=> {
+        console.log(data)
+        res.status(200).json(data)
+    })
+    .catch(err=> {
+        console.error(err.message)
+    })
+})
+
 
 app.listen(PORT, ()=> {
     console.log(`Listening on port ${PORT}`)
